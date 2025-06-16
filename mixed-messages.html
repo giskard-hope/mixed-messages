@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsenal Message Generator</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Using Inter font as requested */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0; /* Light gray background */
+        }
+        /* Custom scrollbar for message area if content overflows */
+        .message-box::-webkit-scrollbar {
+            width: 8px;
+        }
+        .message-box::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .message-box::-webkit-scrollbar-thumb {
+            background: #ef1e25; /* Arsenal Red */
+            border-radius: 10px;
+        }
+        .message-box::-webkit-scrollbar-thumb:hover {
+            background: #c00000; /* Darker Red on hover */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-red-800 to-gray-900 text-white p-4">
+
+    <div class="arsenal-container bg-gray-800 rounded-3xl shadow-2xl p-8 max-w-lg w-full text-center flex flex-col items-center">
+        <!-- Application Title -->
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-red-500 tracking-tight leading-tight animate-pulse">
+            COYG! Message Generator
+        </h1>
+
+        <!-- Message Display Area -->
+        <div id="messageDisplay" class="message-box bg-gray-700 text-gray-200 text-lg md:text-xl p-6 rounded-2xl mb-8 border-2 border-red-600 shadow-inner min-h-[120px] max-h-[250px] overflow-y-auto flex items-center justify-center text-center leading-relaxed italic">
+            Click the button to generate an Arsenal message!
+        </div>
+
+        <!-- Generate Message Button -->
+        <button id="generateBtn" class="bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all duration-300
+                                       text-white font-bold py-3 px-8 rounded-full shadow-lg
+                                       focus:outline-none focus:ring-4 focus:ring-red-500 focus:ring-opacity-75
+                                       transform hover:scale-105 active:scale-95 text-lg">
+            Generate Arsenal Message
+        </button>
+
+        <!-- Small Arsenal-themed footer text -->
+        <p class="mt-8 text-gray-400 text-sm">
+            &copy; 2025 The Gunners Fan App - Victoria Concordia Crescit
+        </p>
+    </div>
+
+    <script>
+        // JavaScript for generating random Arsenal messages
+
+        // Arrays of phrases to construct messages
+        const subjects = [
+            "Our beloved Arsenal",
+            "The Gunners",
+            "Mikel Arteta's tactical masterclass",
+            "The Emirates crowd",
+            "Saka and Odegaard",
+            "Our solid defense",
+            "The spirit of Highbury",
+            "The next generation of talent",
+            "North London is Red",
+            "This season",
+            "The FA Cup run",
+            "Winning the league",
+            "European nights",
+            "The Invincibles' legacy",
+            "Our passionate fans"
+        ];
+
+        const actions = [
+            "will dominate the midfield",
+            "is showing incredible resilience",
+            "delivered a stunning performance",
+            "continues to build for the future",
+            "is ready to challenge for silverware",
+            "played with heart and determination",
+            "will always fight to the end",
+            "is making us proud",
+            "showcased brilliant teamwork",
+            "is destined for greatness",
+            "brings us joy and excitement",
+            "is proving everyone wrong",
+            "is the best team in London"
+        ];
+
+        const outcomes = [
+            "with a clean sheet.",
+            "and secure a vital three points!",
+            "leaving opponents in awe.",
+            "and bring home the trophy!",
+            "proving our title credentials.",
+            "showing true championship spirit.",
+            "making us believe in the process.",
+            "because we are Arsenal!",
+            "sending a clear message to rivals.",
+            "under the floodlights.",
+            "making history, piece by piece.",
+            "and the future is bright!"
+        ];
+
+        const sentiments = [
+            "COYG!",
+            "What a team!",
+            "Unbelievable!",
+            "Trust the process!",
+            "We are going places!",
+            "Victory through harmony!",
+            "North London is ours!",
+            "Fear the red!",
+            "Arteta's reds!",
+            "Arsenal till I die!"
+        ];
+
+        /**
+         * Returns a random element from a given array.
+         * @param {Array} arr The array to pick a random element from.
+         * @returns {*} A random element from the array.
+         */
+        const getRandomElement = (arr) => {
+            const randomIndex = Math.floor(Math.random() * arr.length);
+            return arr[randomIndex];
+        };
+
+        /**
+         * Generates and displays a random Arsenal-themed message.
+         */
+        const generateMessage = () => {
+            const selectedSubject = getRandomElement(subjects);
+            const selectedAction = getRandomElement(actions);
+            const selectedOutcome = getRandomElement(outcomes);
+            const selectedSentiment = getRandomElement(sentiments);
+
+            // Construct the full message
+            const fullMessage = `${selectedSubject} ${selectedAction} ${selectedOutcome} ${selectedSentiment}`;
+
+            // Update the display area with the new message
+            document.getElementById('messageDisplay').textContent = fullMessage;
+        };
+
+        // Event listener for the button
+        document.getElementById('generateBtn').addEventListener('click', generateMessage);
+
+        // Generate an initial message when the page loads
+        window.onload = generateMessage;
+    </script>
+</body>
+</html>
